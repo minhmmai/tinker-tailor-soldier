@@ -15,4 +15,6 @@ const device = {
     lg: `(min-width: ${screenSize.lg})`
 };
 
-export default {screenSize, device};
+const breakpoints = {screenSize, device};
+
+export default breakpoints;

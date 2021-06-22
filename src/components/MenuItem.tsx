@@ -2,17 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledMenuItem = styled.li`
-    margin: 0 1em;
     font-size: 1.2em;
     a {
         color: whitesmoke;
+        padding: .5em 1em;
         text-decoration: none;
-        transition: color 0.2s ease;
+        transition: all 0.2s ease;
     }
 
     :hover {
         a {
-            color: lightskyblue;
+            color: black;
+            border-radius: 0 1em;
+            background-color: lightskyblue;
         }
     }
 `;

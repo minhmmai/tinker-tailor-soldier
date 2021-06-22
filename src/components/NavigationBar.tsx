@@ -8,7 +8,7 @@ const StyledNavigationBar = styled.div`
     background-color: black;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: auto;
     width: 100vw;
 `;

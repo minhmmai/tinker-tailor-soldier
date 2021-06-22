@@ -5,8 +5,7 @@ import logo from '../logo.svg';
 
 const StyledLogo = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 30vw;
     
     .logo {

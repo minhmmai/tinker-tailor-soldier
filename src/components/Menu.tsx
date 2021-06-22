@@ -5,9 +5,8 @@ import MenuItem from './MenuItem';
 
 const StyledMenu = styled.ul`
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
     list-style: none;
-    justify-content: center;
     width: 30vw;
 `;
 

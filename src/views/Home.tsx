@@ -32,10 +32,15 @@ const StyledHome = styled.div`
 
         .callToAction{
             align-self: flex-end;
-            border: none;
+            border: .5em solid lightskyblue;
             border-radius: 1em 0;
             background-color: lightskyblue;
             padding: 1em 2em;
+            transition: all 0.2 ease;
+
+            :hover{
+                background-color: white;
+            }
         }
     }
 `;

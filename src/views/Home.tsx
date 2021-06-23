@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {Heading2} from '../assets/mixins';
 import bgImage from '../assets/images/card.jpg';
+import Button from '../components/UI/Button';
 
 const StyledHome = styled.div`
     background: url(${bgImage});
@@ -12,7 +14,7 @@ const StyledHome = styled.div`
     .card{
         background-color: white;
         border-radius: 0 5em;
-        border: 1em solid lightskyblue;
+        border: .5em solid lightskyblue;
         color: black;
         display: flex;
         flex-direction: column;
@@ -25,22 +27,7 @@ const StyledHome = styled.div`
         transform: translate(-50%, -50%);
         
         h2{
-            color: black;
-            font-size: 3em ;
-            width: 100%;
-        }
-
-        .callToAction{
-            align-self: flex-end;
-            border: .5em solid lightskyblue;
-            border-radius: 1em 0;
-            background-color: lightskyblue;
-            padding: 1em 2em;
-            transition: all 0.2 ease;
-
-            :hover{
-                background-color: white;
-            }
+            ${Heading2}
         }
     }
 `;
@@ -55,7 +42,7 @@ const Home = () => {
                 <p>
                     Check out our new rage of credit cards. From low-rate to low-fee, we've got you covered!
                 </p>
-                <button className="callToAction">Learn More</button>
+                <Button>Learn More</Button>
             </div>
         </StyledHome>
     )

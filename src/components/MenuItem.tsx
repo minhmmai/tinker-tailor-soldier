@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const StyledMenuItem = styled.li`
     font-size: 1.2em;
@@ -8,6 +9,10 @@ const StyledMenuItem = styled.li`
         padding: .5em 1em;
         text-decoration: none;
         transition: all 0.2s ease;
+    }
+
+    .active {
+        color: lightskyblue;
     }
 
     :hover {
@@ -20,14 +25,19 @@ const StyledMenuItem = styled.li`
 `;
 
 interface Props {
-    label: string,
-    destination: string
+    children: string,
+    link: string,
+    exact?: boolean
 }
 
-const MenuItem = ({label, destination}: Props) => {
+const MenuItem = ({ children, link, exact }: Props) => {
     return (
         <StyledMenuItem>
-            <a href={destination}>{label}</a>
+            <NavLink
+                exact={exact}
+                to={link}>
+                {children}
+            </NavLink>
         </StyledMenuItem>
     )
 };

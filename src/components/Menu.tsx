@@ -13,8 +13,8 @@ const StyledMenu = styled.ul`
 const Menu = () => {
     return (
         <StyledMenu>
-            <MenuItem label="Home" destination="/"/>
-            <MenuItem label="Customers" destination="/customers"/>
+            <MenuItem exact link="/">Home</MenuItem>
+            <MenuItem link="/customers">Customers</MenuItem>
         </StyledMenu>
     )
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Shadow } from '../../assets/mixins';
 
-interface Props {
+interface IProps {
     children: string
 }
 
@@ -22,7 +22,7 @@ const StyledButton = styled.button`
     }
 `;
 
-const Button = ({ children }: Props) => {
+const Button = ({ children }: IProps) => {
     return (
         <StyledButton>
             {children}

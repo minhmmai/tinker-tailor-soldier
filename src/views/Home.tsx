@@ -8,7 +8,7 @@ import Button from '../components/UI/Button';
 const StyledHome = styled.div`
     background: url(${bgImage});
     background-size: cover;
-    background-position: top;
+    background-position: top left;
     height: 100vh;
 
     .card{

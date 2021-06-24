@@ -24,13 +24,13 @@ const StyledMenuItem = styled.li`
     }
 `;
 
-interface Props {
+interface IProps {
     children: string,
     link: string,
     exact?: boolean
 }
 
-const MenuItem = ({ children, link, exact }: Props) => {
+const MenuItem = ({ children, link, exact }: IProps) => {
     return (
         <StyledMenuItem>
             <NavLink

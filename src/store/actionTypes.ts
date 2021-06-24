@@ -1,0 +1,3 @@
+export const FETCH_CUSTOMERS = "FETCH_CUSTOMERS";
+
+export const SET_CUSTOMER_TYPE = "SET_CUSTOMER_TYPE";

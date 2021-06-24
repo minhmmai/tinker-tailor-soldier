@@ -7,10 +7,9 @@ import { Heading5 } from '../../assets/mixins';
 import bellIcon from '../../assets/icons/bell.svg';
 import customerIcon from '../../assets/icons/customer.svg';
 import staffIcon from '../../assets/icons/staff.svg';
-import otherIcon from '../../assets/icons/other.svg';
 
-interface Props {
-    type?: CustomerType,
+interface IProps {
+    type: CustomerType,
     link: string,
     exact?: boolean
 }
@@ -52,9 +51,8 @@ const StyledCustomerCard = styled.div`
     }
 `;
 
-const CustomerCard = ({ type = CustomerType.Other, link, exact }: Props) => {
-    let imgSrc = otherIcon;
-    let customerType = "Other";
+const CustomerCard = ({ type, link, exact }: IProps) => {
+    let imgSrc, customerType: string = "";
 
     if (type === CustomerType.New) {
         imgSrc = bellIcon

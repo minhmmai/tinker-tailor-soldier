@@ -17,7 +17,6 @@ const CustomerCards = () => {
             <CustomerCard type={CustomerType.New} link="/customers/new"/>
             <CustomerCard type={CustomerType.Existing}  link="/customers/existing"/>
             <CustomerCard type={CustomerType.Staff}  link="/customers/staff"/>
-            <CustomerCard type={CustomerType.Other}  link="/customers/other"/>
         </StyledCustomerCards>
     )
 };

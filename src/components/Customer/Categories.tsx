@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { CustomerType } from './CustomerType';
-import CustomerCard from './CustomerCard';
+import CustomerCard from './Category';
 
 const StyledCustomerCards = styled.div`
     display: flex;

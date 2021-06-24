@@ -9,9 +9,7 @@ import bellIcon from '../../assets/icons/bell.svg';
 import customerIcon from '../../assets/icons/customer.svg';
 import staffIcon from '../../assets/icons/staff.svg';
 import { Dispatch } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
-import { CustomerState } from '../../store/type';
-import { ICustomer } from '../../interfaces/ICustomer';
+import { useDispatch } from 'react-redux';
 
 interface IProps {
     type: CustomerType,
@@ -57,13 +55,6 @@ const StyledCustomerCard = styled.div`
 `;
 
 const CustomerCard = ({ type, link, exact }: IProps) => {
-    const customers: ICustomer[] = useSelector(
-        (state: CustomerState) => state.customers
-    )
-
-    const customerType: CustomerType = useSelector(
-        (state: CustomerState) => state.customerType
-    )
 
     const dispatch: Dispatch<any> = useDispatch();
 
@@ -83,7 +74,7 @@ const CustomerCard = ({ type, link, exact }: IProps) => {
     const changeCustomerType: any = (event: MouseEvent) => {
         event?.preventDefault();
         dispatch(actions.setCustomerType(type))
-        dispatch(actions.filterCustomers(customers, customerType))
+        dispatch(actions.filterCustomerByType())
     }
 
     return (

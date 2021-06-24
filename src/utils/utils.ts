@@ -37,20 +37,21 @@ export const initCustomers = (transactions: ITransaction[]) => {
 };
 
 export const filterCustomerByType = (customers: ICustomer[], customerType: CustomerType) => {
-    let startingLetter: string = "N";
-    let filteredCustomers: ICustomer[] = [];
+    let filteredCustomers: ICustomer[] = []
 
-    if (customerType === CustomerType.Existing) {
-        startingLetter = "E"
-    } else if (customerType === CustomerType.Staff) {
-        startingLetter = "S"
-    }else {
-        return [];
+    if (customerType !== CustomerType.None) {
+        let firstChar = "";
+
+        if (customerType === CustomerType.New) {
+            firstChar = "N"
+        } else if (customerType === CustomerType.Existing) {
+            firstChar = "E"
+        } else if (customerType === CustomerType.Staff) {
+            firstChar = "S"
+        }
+
+        filteredCustomers = customers.filter((customer: ICustomer) => customer.customerID.toUpperCase().charAt(0) === firstChar)
     }
-
-    filteredCustomers = customers.filter((customer: ICustomer) => {
-        customer.customerID.toUpperCase().startsWith(startingLetter);
-    });
-
+    
     return filteredCustomers;
 }

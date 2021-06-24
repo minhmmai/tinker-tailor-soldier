@@ -1,9 +1,8 @@
+import { CustomerType } from "../components/Customer/CustomerType";
+import { ICustomerTransaction } from "./ICustomerTransactions";
+
 export interface ICustomer {
     customerID: string,
-    purchases: Array<{
-        purchaseID: number,
-        DateOfPurchase: string,
-        purchaseValue: number,
-        cardName: string
-    }>
+    customerType: CustomerType,
+    purchases: ICustomerTransaction[]
 }

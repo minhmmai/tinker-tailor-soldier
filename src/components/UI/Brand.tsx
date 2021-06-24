@@ -7,7 +7,6 @@ const StyledBrand = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 30vw;
     
     .logo {
         animation: App-logo-spin infinite 20s linear;

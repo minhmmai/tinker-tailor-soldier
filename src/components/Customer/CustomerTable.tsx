@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Accordion from '../UI/Accordion';
 import { ICustomer } from '../../interfaces/ICustomer';
 import { CustomerState } from '../../store/type';
-import Spinner from '../UI/Spinner';
 import { CustomerType } from './CustomerType';
 
 interface IProps {

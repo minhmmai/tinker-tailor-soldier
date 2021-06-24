@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -9,15 +9,17 @@ import bellIcon from '../../assets/icons/bell.svg';
 import customerIcon from '../../assets/icons/customer.svg';
 import staffIcon from '../../assets/icons/staff.svg';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import { CustomerState } from '../../store/type';
 
 interface IProps {
     type: CustomerType,
     link: string,
-    exact?: boolean
+    exact?: boolean,
+    customerType: CustomerType
 }
 
-const StyledCustomerCard = styled.div`
+const StyledCategory = styled.div`
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -54,7 +56,7 @@ const StyledCustomerCard = styled.div`
     }
 `;
 
-const CustomerCard = ({ type, link, exact }: IProps) => {
+const Category = ({ type, link, exact, customerType }: IProps) => {
 
     const dispatch: Dispatch<any> = useDispatch();
 
@@ -78,13 +80,19 @@ const CustomerCard = ({ type, link, exact }: IProps) => {
     }
 
     return (
-        <StyledCustomerCard  onClick={changeCustomerType}>
+        <StyledCategory className={type === customerType ? "active" : ""} onClick={changeCustomerType}>
             <NavLink to={link} exact={exact}>
                 <img className="customer-icon" src={imgSrc} alt="Customer type icon" />
                 <h5>{customerText}</h5>
             </NavLink>
-        </StyledCustomerCard>
+        </StyledCategory>
     )
 };
 
-export default CustomerCard;
+const mapStateToProps = (state: CustomerState) => {
+    return {
+        customerType: state.customerType
+    }
+}
+
+export default connect(mapStateToProps)(Category);

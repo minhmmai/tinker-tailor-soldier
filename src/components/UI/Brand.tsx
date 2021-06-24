@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import logo from '../logo.svg';
+import logo from '../../logo.svg';
 
-const StyledLogo = styled.div`
+const StyledBrand = styled.div`
     display: flex;
+    align-items: center;
     justify-content: flex-start;
     width: 30vw;
     
@@ -27,13 +28,13 @@ const StyledLogo = styled.div`
     }
 `;
 
-const Logo = () => {
+const Brand = () => {
     return (
-        <StyledLogo>
+        <StyledBrand>
             <img src={logo} className="logo" alt="React Bank logo" />
             <h1 className="title">React Bank</h1>
-        </StyledLogo>
+        </StyledBrand>
     )
 };
 
-export default Logo;
+export default Brand;

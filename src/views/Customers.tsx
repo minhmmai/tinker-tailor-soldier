@@ -23,7 +23,7 @@ const Customers = () => {
     
     useEffect(() => {
         dispatch(actions.fetchAllCustomers(transactions))
-    }, []);
+    });
 
     return (
         <StyledCustomers>

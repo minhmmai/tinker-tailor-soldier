@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import breakpoints from '../../assets/breakpoints';
 import { ICustomer } from '../../interfaces/ICustomer';
 import { ICustomerTransaction } from '../../interfaces/ICustomerTransactions';
 import { getTotalSpending, calculateDiscount } from "../../utils/utils";
@@ -10,9 +12,9 @@ interface IProps {
 
 const StyledAccordion = styled.div`
     background-color: lightskyblue;
-    width: 30vw;
     border-radius: 1em 0;
     .label-bar {
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -40,7 +42,18 @@ const StyledAccordion = styled.div`
         }
     }
 
-    
+    @media ${breakpoints.device.xs} {
+        width: 100vw;
+    }
+    @media ${breakpoints.device.sm} {
+        width: 100vw;
+    }
+    @media ${breakpoints.device.md} {
+        width: 75vw;
+    }
+    @media ${breakpoints.device.lg} {
+        width: 50vw;
+    }
 `;
 
 const Accordion = ({ customer }: IProps) => {

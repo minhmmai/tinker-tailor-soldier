@@ -7,7 +7,6 @@ const StyledMenu = styled.ul`
     display: flex;
     justify-content: flex-end;
     list-style: none;
-    width: 30vw;
 `;
 
 const Menu = () => {

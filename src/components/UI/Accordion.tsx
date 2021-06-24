@@ -44,6 +44,9 @@ const StyledAccordion = styled.div`
 
     @media ${breakpoints.device.xs} {
         width: 100vw;
+        .label-bar {
+            flex-direction: column;
+        }
     }
     @media ${breakpoints.device.sm} {
         width: 100vw;

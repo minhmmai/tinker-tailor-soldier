@@ -44,6 +44,8 @@ export const filterCustomerByType = (customers: ICustomer[], customerType: Custo
         startingLetter = "E"
     } else if (customerType === CustomerType.Staff) {
         startingLetter = "S"
+    }else {
+        return [];
     }
 
     filteredCustomers = customers.filter((customer: ICustomer) => {

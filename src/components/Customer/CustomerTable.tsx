@@ -1,39 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
 import styled from 'styled-components';
 
+import * as actions from '../../store/actionCreators';
 import { ICustomer } from '../../interfaces/ICustomer';
+import { CustomerState } from '../../store/type';
+import { CustomerType } from './CustomerType';
 
 const StyledCustomerTable = styled.div`
-
+    height: 5em;
+    width: 5em;
+    background-color: black;
 `;
 
 const CustomerTable = () => {
-    let table;
-
-    // if (customers.length > 0) {
-    //     table = (
-    //         <table>
-    //             <tr>
-    //                 <th>Customer No.</th>
-    //                 <th>No. Transactions</th>
-    //             </tr>
-    //             {
-    //                 customers.forEach((entry: ICustomer) => {
-    //                     return (
-    //                         <tr>
-    //                             <td>{entry.customerID.toUpperCase()}</td>
-    //                             <td>{entry.purchases.length}</td>
-    //                         </tr>
-    //                     )
-    //                 })
-    //             }
-    //         </table>
-    //     )
-    // }
+    const filteredCustomers: ICustomer[] = useSelector(
+        (state: CustomerState) => state.filteredCustomers
+    );
 
     return (
         <StyledCustomerTable>
-            {table}
+            {filteredCustomers.toString()}
         </StyledCustomerTable>
     )
 };

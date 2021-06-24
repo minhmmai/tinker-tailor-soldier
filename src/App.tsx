@@ -6,6 +6,7 @@ import NavigationBar from './components/NavigationBar';
 import Home from './views/Home';
 import Customers from './views/Customers';
 import Spinner from './components/UI/Spinner';
+import CustomerTable from './components/Customer/CustomerTable';
 
 function App() {
   let routes = (

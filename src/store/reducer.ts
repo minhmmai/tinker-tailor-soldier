@@ -1,4 +1,3 @@
-import { Switch } from "react-router-dom"
 import { CustomerType } from "../components/Customer/CustomerType"
 import { ICustomer } from "../interfaces/ICustomer"
 import * as actionTypes from "./actionTypes"
@@ -6,6 +5,7 @@ import { CustomerAction, CustomerState } from './type';
 
 const initialState: CustomerState = {
   customers: [],
+  filteredCustomers: [],
   customerType: CustomerType.None
 }
 
@@ -14,7 +14,7 @@ const reducer = (
   action: CustomerAction
 ): CustomerState => {
   switch (action.type) {
-    case actionTypes.FETCH_CUSTOMERS:
+    case actionTypes.UPDATE_CUSTOMERS:
       const newCustomers: ICustomer[] = action.customers!
       return {
         ...state,
@@ -26,6 +26,12 @@ const reducer = (
         ...state,
         customerType: action.customerType!
       }  
+
+      case actionTypes.FILTER_CUSTOMER_BY_TYPE:
+        return {
+          ...state,
+          filteredCustomers: action.filteredCustomers!
+        }  
   
     default:
       return state;

@@ -2,11 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+import * as actions from '../../store/actionCreators';
 import { CustomerType } from './CustomerType';
 import { Heading5 } from '../../assets/mixins';
 import bellIcon from '../../assets/icons/bell.svg';
 import customerIcon from '../../assets/icons/customer.svg';
 import staffIcon from '../../assets/icons/staff.svg';
+import { Dispatch } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CustomerState } from '../../store/type';
+import { ICustomer } from '../../interfaces/ICustomer';
 
 interface IProps {
     type: CustomerType,
@@ -52,24 +57,40 @@ const StyledCustomerCard = styled.div`
 `;
 
 const CustomerCard = ({ type, link, exact }: IProps) => {
-    let imgSrc, customerType: string = "";
+    const customers: ICustomer[] = useSelector(
+        (state: CustomerState) => state.customers
+    )
+
+    const customerType: CustomerType = useSelector(
+        (state: CustomerState) => state.customerType
+    )
+
+    const dispatch: Dispatch<any> = useDispatch();
+
+    let imgSrc, customerText: string = "";
 
     if (type === CustomerType.New) {
         imgSrc = bellIcon
-        customerType = "New"
+        customerText = "New"
     } else if (type === CustomerType.Existing) {
         imgSrc = customerIcon
-        customerType = "Existing"
+        customerText = "Existing"
     } else if (type === CustomerType.Staff) {
         imgSrc = staffIcon
-        customerType = "Staff"
+        customerText = "Staff"
+    }
+
+    const changeCustomerType: any = (event: MouseEvent) => {
+        event?.preventDefault();
+        dispatch(actions.setCustomerType(type))
+        dispatch(actions.filterCustomers(customers, customerType))
     }
 
     return (
-        <StyledCustomerCard>
+        <StyledCustomerCard  onClick={changeCustomerType}>
             <NavLink to={link} exact={exact}>
                 <img className="customer-icon" src={imgSrc} alt="Customer type icon" />
-                <h5>{customerType}</h5>
+                <h5>{customerText}</h5>
             </NavLink>
         </StyledCustomerCard>
     )

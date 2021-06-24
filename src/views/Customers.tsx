@@ -1,15 +1,11 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Dispatch, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
-
-import Spinner from '../components/UI/Spinner';
-import { CustomerType } from '../components/Customer/CustomerType';
+import * as actions from '../store/actionCreators';
 import transactions from '../data/tinker_tailor_soldier.json';
-import {initCustomers, filterCustomerByType} from '../utils/utils';
-import { ICustomer } from '../interfaces/ICustomer';
 import { Heading2 } from '../assets/mixins';
 import CustomerCards from '../components/Customer/CustomerCards';
 import CustomerTable from '../components/Customer/CustomerTable';
+import { useDispatch } from 'react-redux';
 
 const StyledCustomers = styled.div`
     h2{
@@ -18,18 +14,19 @@ const StyledCustomers = styled.div`
 `;
 
 const Customers = () => {
-    const [customers, setCustomers] = useState<Array<ICustomer>>([]);
-    const [customerType, setCustomerType] = useState<CustomerType>();
-
+    
+    const dispatch: Dispatch<any> = useDispatch();
+    
     useEffect(() => {
-        setCustomers(initCustomers(transactions));
+        dispatch(actions.fetchAllCustomers(transactions))
     }, []);
 
     return (
         <StyledCustomers>
             <h2>Customers</h2>
             <p>Select a customer for more transactional details</p>
-            <CustomerCards/>
+            <CustomerCards />
+            <CustomerTable/>
         </StyledCustomers>
     )
 };

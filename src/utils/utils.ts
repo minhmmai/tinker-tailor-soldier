@@ -91,30 +91,30 @@ export const calculateDiscount = (customer: ICustomer) => {
         }
     // 2% discount on the interest of any card and full annual fee wave off for staff
     } else if (customerType === CustomerType.Staff) {
-        // Add 2% discount to each transaction
+        // Add 2% discount to interest payment
         customer.purchases.forEach((transaction: ICustomerTransaction) => {
-            discount += (transaction.purchaseValue * (transaction.card.interestRate - 0.02))
+            discount += ((transaction.purchaseValue * transaction.card.interestRate) - (transaction.purchaseValue * (transaction.card.interestRate - 0.02)))
 
         })
 
         // Find unique cards from all customer transactions
         const uniqueCards: ICard[] = [];
         customer.purchases.forEach((transaction: ICustomerTransaction) => {
-             if (uniqueCards.indexOf(transaction.card) > -1) {
+             if (uniqueCards.indexOf(transaction.card) === -1) {
                  uniqueCards.push(transaction.card)
              }
         })
 
         // Subtract annual fee on-time for each card
         uniqueCards.forEach((card: ICard) => {
-            discount -= card.annualFee
+            discount += card.annualFee
         })
     }
 
     customer.purchases.forEach((transaction: ICustomerTransaction) => {
-        if (transaction.month === "05" || transaction.month === "06") {
+        if (+transaction.month === 5 || +transaction.month === 6) {
             discount += (transaction.purchaseValue * 0.01)
-        }else if (transaction.month === "07" || transaction.month === "08") {
+        }else if (+transaction.month === 7 || +transaction.month === 8) {
             discount += (transaction.purchaseValue * 0.015)
         }
     })

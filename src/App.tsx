@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import NavigationBar from './components/NavigationBar';
@@ -15,14 +15,17 @@ function App() {
     </Switch>
   )
   return (
+    <BrowserRouter>
       <div className="App">
         <header>
           <NavigationBar />
         </header>
         <main>
-          <Suspense fallback={<Spinner/>}>{routes}</Suspense>
+          <Suspense fallback={<Spinner />}>{routes}</Suspense>
         </main>
       </div>
+
+    </BrowserRouter>
   );
 }
 

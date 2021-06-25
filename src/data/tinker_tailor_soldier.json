@@ -9,9 +9,9 @@
 	{
 		"purchaseID": 2,
 		"customerID": "S1",
-		"DateOfPurchase":"15/02/2019",
-		"purchaseValue": 140,
-		"cardName": "Tailor"
+		"DateOfPurchase":"31/08/2020",
+		"purchaseValue": 8965,
+		"cardName": "Tinker"
 	},
 	{
 		"purchaseID": 3,
@@ -30,8 +30,8 @@
 	{
 		"purchaseID": 5,
 		"customerID": "S1",
-		"DateOfPurchase":"01/05/2019",
-		"purchaseValue": 40,
+		"DateOfPurchase":"17/05/2020",
+		"purchaseValue": 5432,
 		"cardName": "Tailor"
 	},
 	{
@@ -51,9 +51,9 @@
 	{
 		"purchaseID": 8,
 		"customerID": "S1",
-		"DateOfPurchase":"15/07/2019",
-		"purchaseValue": 120,
-		"cardName": "Tailor"
+		"DateOfPurchase":"23/06/2020",
+		"purchaseValue": 6531,
+		"cardName": "Soldier"
 	},
 	{
 		"purchaseID": 9,

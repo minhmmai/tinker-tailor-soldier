@@ -30,6 +30,10 @@ const StyledAccordion = styled.div`
         background-color: lightgray;
         border-radius: 0 0 1em 0;
         padding: 1em;
+
+        .discount-details {
+            text-align: left;
+        }
     }
 
     .transaction {
@@ -69,7 +73,7 @@ const Accordion = ({ customer }: IProps) => {
                 <div className="summary">
                     <div>
                         <p>Total Spending: ${getTotalSpending(customer.purchases).toFixed(2)}</p>
-                        <p>Total Discount: ${calculateDiscount(customer).toFixed(2)}</p>
+                        <p>Total Discount: ${calculateDiscount(customer).value.toFixed(2)}</p>
                     </div>
                 </div>
                 <div>{isActive ? '-' : '+'}</div>
@@ -90,6 +94,15 @@ const Accordion = ({ customer }: IProps) => {
                             )
                         })
                     }
+                    <div className="discount-details">
+                        {
+                            calculateDiscount(customer).details.map((detail, index) => {
+                                return (
+                                    <p key={index}>{detail}</p>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             }
         </StyledAccordion>

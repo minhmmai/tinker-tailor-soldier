@@ -4,6 +4,7 @@ import { CustomerType } from '../components/Customer/CustomerType';
 import { ICustomerTransaction } from '../interfaces/ICustomerTransactions';
 import * as cards from '../data/cards';
 import ICard from '../interfaces/ICard';
+import IDiscount from '../interfaces/IDiscount';
 
 // Transform transaction-based data to customer-based
 export const initCustomers = (transactions: ITransaction[]) => {
@@ -77,24 +78,29 @@ export const calculateDiscount = (customer: ICustomer) => {
     const customerType = customer.customerType;
     const totalSpending = getTotalSpending(customer.purchases);
 
-    let discount: number = 0;
+    let discount: IDiscount = {
+        value: 0,
+        details: []
+    }
 
     // 200 discount on annual payment, if total spending exceeds A$5000 for new customer
     if (customerType === CustomerType.New) {
         if (totalSpending > 5000) {
-            discount = 200
+            discount.value = 200
+            discount.details.push("$200 OFF annual payment")
         }
     // 1% discount if annual spending exceeds A$2000 for existing customer 
     } else if (customerType === CustomerType.Existing) {
         if (totalSpending > 2000) {
-            discount = totalSpending / 100
+            discount.value = totalSpending / 100
+            discount.details.push(`1% OFF ($${totalSpending / 100}) total spending over $2000`)
         }
     // 2% discount on the interest of any card and full annual fee wave off for staff
     } else if (customerType === CustomerType.Staff) {
         // Add 2% discount to interest payment
         customer.purchases.forEach((transaction: ICustomerTransaction) => {
-            discount += ((transaction.purchaseValue * transaction.card.interestRate) - (transaction.purchaseValue * (transaction.card.interestRate - 0.02)))
-
+            discount.value += ((transaction.purchaseValue * transaction.card.interestRate) - (transaction.purchaseValue * (transaction.card.interestRate - 0.02)))
+            discount.details.push(`$${transaction.purchaseValue} OFF interest payment`)
         })
 
         // Find unique cards from all customer transactions
@@ -107,15 +113,18 @@ export const calculateDiscount = (customer: ICustomer) => {
 
         // Subtract annual fee on-time for each card
         uniqueCards.forEach((card: ICard) => {
-            discount += card.annualFee
+            discount.value += card.annualFee
+            discount.details.push(`$${card.annualFee} waived annual fee`)
         })
     }
 
     customer.purchases.forEach((transaction: ICustomerTransaction) => {
         if (+transaction.month === 5 || +transaction.month === 6) {
-            discount += (transaction.purchaseValue * 0.01)
+            discount.value += (transaction.purchaseValue * 0.01)
+            discount.details.push(`$${transaction.purchaseValue * 0.01} OFF winter shopping May/June`)
         }else if (+transaction.month === 7 || +transaction.month === 8) {
-            discount += (transaction.purchaseValue * 0.015)
+            discount.value += (transaction.purchaseValue * 0.015)
+            discount.details.push(`$${transaction.purchaseValue * 0.015} OFF winter shopping July/August`)
         }
     })
 

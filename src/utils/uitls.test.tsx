@@ -94,7 +94,7 @@ test('Return correct total spending for all customers', () => {
   expect(getTotalSpending(staffCustomer.purchases)).toBe(20928);
 });
 test('Return correct discount for all customers', () => {
-  expect(+calculateDiscount(newCustomer).toFixed(2)).toBe(235.18);
-  expect(+calculateDiscount(existingCustomer).toFixed(2)).toBe(0);
-  expect(+calculateDiscount(staffCustomer).toFixed(2)).toBe(1322.66);
+  expect(+calculateDiscount(newCustomer).value.toFixed(2)).toBe(235.18);
+  expect(+calculateDiscount(existingCustomer).value.toFixed(2)).toBe(0);
+  expect(+calculateDiscount(staffCustomer).value.toFixed(2)).toBe(1322.66);
 });
